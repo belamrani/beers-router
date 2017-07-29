@@ -1,0 +1,67 @@
+header {
+  padding: 30px 0;
+  color: #fff;
+  background: #3a4250;
+  z-index: 9999;
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 250px;
+
+  .header-img {
+    margin: 20px 0 50px 0;
+    height: 150px;
+    position: relative;
+    padding: 0 0 0 80px;
+
+    img {
+      position: absolute;
+      top: 0;
+      left: 50px;
+      border-radius: 50%;
+      height: 150px;
+      width: 150px;
+    }
+  }
+
+  .nav {
+    a {
+      position: relative;
+      color: #fff;
+      text-decoration: none;
+      letter-spacing: .5px;
+      display: block;
+      padding: 12px 20px;
+      font-size: 16px;
+      transition: all .2s ease;
+      background: #3a4250;
+    }
+
+    a.active {
+      background: #313844;
+    }
+
+    a:hover {
+      background-color: #373e4c;
+    }
+  }
+}
+
+div.app {
+  display: flex;
+  height: 100%;
+}
+
+content {
+  position: absolute;
+  left: 250px;
+  padding: 20px;
+  top: 0;
+}
+
+.newbeer {
+  position: absolute;
+  bottom: 20px;
+  left: 270px;
+}

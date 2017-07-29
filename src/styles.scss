@@ -1,1 +1,18 @@
 /* You can add global styles to this file, and also import other style files */
+body {
+  margin: 0px;
+}
+
+.ui-datalist {
+  width: 600px;
+}
+
+.ui-datalist .ui-datalist-data>li {
+  height: 100px;
+  width: 100%;
+  border-bottom: 1px solid #D5D5D5;
+}
+
+.ui-datalist .ui-datalist-data>li:last-child {
+  border-bottom: none;
+}

@@ -1,0 +1,12 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <div>
+    Name: <input formControlName="name" required>
+    <span *ngIf="form.get('name').touched && form.hasError('required', 'name')">
+      required
+    </span>
+  </div>
+  <div>
+    Description: <textarea formControlName="description"></textarea>
+  </div>
+  <button type="submit" [disabled]="form.invalid">Reply</button>
+</form>
