@@ -1,10 +1,10 @@
-<p-dataList [value]="beers | async">
+<p-dataList [value]="beers | async" [paginator]="true" [rows]="3">
   <p-header>List of Beers</p-header>
   <p-footer>Choose from the list.</p-footer>
   <ng-template let-b pTemplate="item">
     <div class="beer-item-inactive" *ngIf="b.name !== (beer|async).name" [routerLink]="['../../beers', b.name]">{{b.name}}</div>
     <div class="beer-item-active" *ngIf="b.name === (beer|async).name">
-      <img [src]="b.picture">
+      <img [src]="b.picture" onerror="this.src = 'assets/beer.jpg'">
       <div class="detail">
       <div class="name">{{b.name}}</div>
       <div class="description">{{b.description}}</div>

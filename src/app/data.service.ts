@@ -29,8 +29,8 @@ export class DataService {
     return this.state.map(s => s.categories.filter(c => c.id === id)[0]).first();
   }
 
-  getBeers(categoryId: number, folder: string): Observable<Observable<Beer[]>> {
-    return of(this.state.map(s => s.beers.filter(m => (m.categoryId === categoryId) && (m.folder === folder) )));
+  getBeers(categoryId: number, list: string): Observable<Observable<Beer[]>> {
+    return of(this.state.map(s => s.beers.filter(m => (m.categoryId === categoryId) && (m.list === list) )));
   }
 
   getBeer(name: string): Observable<Beer> {
@@ -65,7 +65,7 @@ export class DataService {
         id: this.nextBeerId(),
         categoryId: v.categoryId,
         name: v.payload.name,
-        folder: v.payload.folder,
+        list: v.payload.list,
         description: v.payload.description
       };
       return [...beers, newBeer];

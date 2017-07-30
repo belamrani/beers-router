@@ -17,8 +17,8 @@ export class BeerCategoryComponent {
   }
 
   goUp(): void {
-    const folder = this.route.snapshot.parent.params['folder'];
-    this.router.navigate(['/', folder]);
+    const list = this.route.snapshot.parent.params['list'];
+    this.router.navigate(['/', list]);
   }
 
 }

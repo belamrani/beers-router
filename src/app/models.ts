@@ -2,7 +2,7 @@ import {Subject} from 'rxjs/Subject';
 export interface Beer {
   id: number;
   name: string;
-  folder: string;
+  list: string;
   description: string;
   picture?: string;
   categoryId: number;
@@ -22,7 +22,7 @@ export interface AppState {
 export type Add = {
   type: 'add';
   categoryId: number;
-  payload: { name: string; description: string; folder: string; };
+  payload: { name: string; description: string; list: string; };
   onSuccess: Function;
 };
 
@@ -52,7 +52,7 @@ export const initialState: AppState = {
       foncée et une mousse crémeuse. Son arôme est malté et l'on distingue des notes de raisins.
       Elle possède un goût très doux dans lequel on décèle des touches caramélisées, fruitées et épicées.
       Son volume d'alcool est de 10,5%.`,
-      folder: 'drank',
+      list: 'drank',
       picture: 'assets/gulden-drak.jpeg',
       categoryId: 1
     },
@@ -66,7 +66,7 @@ export const initialState: AppState = {
       qui cohabite rapidement avec une belle amertume qui va perdurer tout au long de la dégustation.
       Une bière relativement bien équilibrée qui constitue une entrée en matière plus que réussie pour
       les néophytes désireux de découvrir les bières belges dites « triple » !`,
-      folder: 'drank',
+      list: 'drank',
       picture: 'assets/pater-lieven.jpeg',
       categoryId: 1
     },
@@ -74,21 +74,21 @@ export const initialState: AppState = {
       id: 3,
       name: 'leffe',
       description: 'Bière très simple',
-      folder: 'to-try',
+      list: 'to-try',
       categoryId: 1
     },
     {
       id: 4,
       name: 'test',
       description: 'Bière très simple',
-      folder: 'drank',
+      list: 'drank',
       categoryId: 2
     },
     {
       id: 4,
       name: 'hoogardeen',
       description: 'Bière très simple',
-      folder: 'to-try',
+      list: 'to-try',
       categoryId: 2
     },
   ]

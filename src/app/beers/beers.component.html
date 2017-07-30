@@ -1,4 +1,4 @@
-<p-dataList [value]="beers | async">
+<p-dataList [value]="beers | async" [paginator]="true" [rows]="3">
   <p-header>List of Beers</p-header>
   <p-footer>Choose from the list.</p-footer>
   <ng-template let-beer pTemplate="item">

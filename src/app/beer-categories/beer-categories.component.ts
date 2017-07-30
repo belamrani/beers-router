@@ -12,12 +12,12 @@ import 'rxjs/add/operator/mergeAll';
   styleUrls: ['./beer-categories.component.scss']
 })
 export class BeerCategoriesComponent {
-  folder: Observable<string>;
+  list: Observable<string>;
   categories: Observable<Category[]>;
 
   beers: Observable<Beer[]>;
   constructor(route: ActivatedRoute) {
-    this.folder = route.params.pluck('folder');
+    this.list = route.params.pluck('list');
     this.categories = (<any>route.data.pluck('categories')).mergeAll();
   }
 

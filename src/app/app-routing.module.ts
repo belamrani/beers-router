@@ -20,7 +20,7 @@ const routes = [
     loadChildren: 'app/pictures/pictures.module#PicturesModule'
   },
   {
-    path: ':folder',
+    path: ':list',
     children: [
       {
         path: '',
@@ -71,7 +71,7 @@ export function categoryResolver(dataService: DataService) {
 }
 
 export function beersResolver(dataService: DataService) {
-  return (route: ActivatedRouteSnapshot) => dataService.getBeers(+route.parent.params['id'], route.parent.params['folder']);
+  return (route: ActivatedRouteSnapshot) => dataService.getBeers(+route.parent.params['id'], route.parent.params['list']);
 }
 
 export function beerResolver(dataService: DataService) {
