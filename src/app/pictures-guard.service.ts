@@ -1,20 +1,19 @@
 import {Injectable} from '@angular/core';
-import {ActivatedRouteSnapshot, CanActivate, RouterStateSnapshot} from '@angular/router';
+import {CanLoad, Route} from '@angular/router';
 import {Observable} from 'rxjs/Observable';
 import {Observer} from 'rxjs/Observer';
 import {ConfirmationService} from 'primeng/components/common/api';
 
 @Injectable()
-export class MajorGuardService implements CanActivate {
+export class PicturesGuardService implements CanLoad {
 
   constructor(public confirmationService: ConfirmationService) {
   }
 
-  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
+  canLoad(route: Route) {
     return Observable.create((observer: Observer<boolean>) => {
-      console.log(route.params.name);
       this.confirmationService.confirm({
-        message: 'Do you really want to see the description of the ' + route.params.name +  ' ?',
+        message: 'Do you really want to see pictures of beers ?',
         accept: () => {
           observer.next(true);
           observer.complete();

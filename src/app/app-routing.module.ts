@@ -7,35 +7,41 @@ import {BeerComponent} from './beer/beer.component';
 import {ComposeComponent} from './compose/compose.component';
 import {MajorGuardService} from './major-guard.service';
 import {DataService} from './data.service';
+import {PicturesGuardService} from './pictures-guard.service';
 
 const routes = [
   {
     path: '',
     pathMatch: 'full',
-    redirectTo: '/drank'},
+    redirectTo: '/drank'
+  },
+  { path: 'pictures',
+    canLoad: [PicturesGuardService],
+    loadChildren: 'app/pictures/pictures.module#PicturesModule'
+  },
   {
     path: ':folder',
     children: [
       {
         path: '',
         component: BeerCategoriesComponent,
-        resolve: { categories: 'categoriesResolver' }
+        resolve: {categories: 'categoriesResolver'}
       },
       {
         path: ':id',
         component: BeerCategoryComponent,
-        resolve: { category: 'categoryResolver' },
+        resolve: {category: 'categoryResolver'},
         children: [
           {
             path: '',
             component: BeersComponent,
-            resolve: { beers: 'beersResolver' }
+            resolve: {beers: 'beersResolver'}
           },
           {
             path: 'beers/:name',
             component: BeerComponent,
             canActivate: [MajorGuardService],
-            resolve: { beers: 'beersResolver', beer: 'beerResolver' }
+            resolve: {beers: 'beersResolver', beer: 'beerResolver'}
           }
         ]
       }
@@ -57,7 +63,7 @@ export class AppRoutingModule {
 
 
 export function categoriesResolver(dataService: DataService) {
-  return (route: ActivatedRouteSnapshot) => dataService.getCategories(route.params['folder']);
+  return (route: ActivatedRouteSnapshot) => dataService.getCategories();
 }
 
 export function categoryResolver(dataService: DataService) {
@@ -65,7 +71,7 @@ export function categoryResolver(dataService: DataService) {
 }
 
 export function beersResolver(dataService: DataService) {
-  return (route: ActivatedRouteSnapshot) =>  dataService.getBeers(+route.parent.params['id']);
+  return (route: ActivatedRouteSnapshot) => dataService.getBeers(+route.parent.params['id'], route.parent.params['folder']);
 }
 
 export function beerResolver(dataService: DataService) {

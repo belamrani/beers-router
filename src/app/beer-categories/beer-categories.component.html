@@ -1,9 +1,12 @@
-
-
 <p-dataList [value]="categories | async">
   <p-header>List of Countries</p-header>
   <p-footer>Choose from the list.</p-footer>
   <ng-template let-category pTemplate="item">
-    <div [routerLink]="[category.id]">{{category.country}}</div>
+    <div class="item-container" [routerLink]="[category.id]">
+      <img width='100' height="70" [src]="category.picture">
+      <div>{{category.country}}</div>
+
+    </div>
+
   </ng-template>
 </p-dataList>

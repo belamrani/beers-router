@@ -1,8 +1,8 @@
 <p-dataList [value]="beers | async">
   <p-header>List of Beers</p-header>
   <p-footer>Choose from the list.</p-footer>
-  <ng-template class="beer-item" let-beer pTemplate="item">
-    <div [routerLink]="['../beers', beer.name]">{{beer.name}}</div>
+  <ng-template let-beer pTemplate="item">
+    <div class="beer-item" [routerLink]="['../beers', beer.name]">{{beer.name}}</div>
   </ng-template>
 </p-dataList>
 

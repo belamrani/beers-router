@@ -1,6 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
 import {
   AppRoutingModule, beerResolver, beersResolver, categoriesResolver,
   categoryResolver
@@ -11,12 +10,16 @@ import { BeerCategoryComponent } from './beer-category/beer-category.component';
 import { BeersComponent } from './beers/beers.component';
 import { BeerComponent } from './beer/beer.component';
 import { ComposeComponent } from './compose/compose.component';
+import {PicturesGuardService} from './pictures-guard.service';
 import {MajorGuardService} from './major-guard.service';
-import {ConfirmationService, ConfirmDialogModule, DataListModule} from 'primeng/primeng';
+import {ConfirmationService} from 'primeng/components/common/api';
+import {DataListModule} from 'primeng/components/datalist/datalist';
+import {ConfirmDialogModule} from 'primeng/components/confirmdialog/confirmdialog';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {DataService} from './data.service';
 import {Actions} from './models';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {SelectButtonModule} from 'primeng/components/selectbutton/selectbutton';
 
 @NgModule({
   declarations: [
@@ -34,9 +37,10 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
     DataListModule,
     BrowserAnimationsModule,
     AppRoutingModule,
-    ConfirmDialogModule
+    ConfirmDialogModule,
+    SelectButtonModule
   ],
-  providers: [MajorGuardService, ConfirmationService, DataService, Actions,
+  providers: [MajorGuardService, PicturesGuardService, ConfirmationService, DataService, Actions,
     {provide: 'categoriesResolver', useFactory: categoriesResolver, deps: [DataService]},
     {provide: 'categoryResolver', useFactory: categoryResolver, deps: [DataService]},
     {provide: 'beersResolver', useFactory: beersResolver, deps: [DataService]},

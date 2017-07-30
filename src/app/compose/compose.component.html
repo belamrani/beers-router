@@ -1,12 +1,10 @@
 <form [formGroup]="form" (ngSubmit)="onSubmit()">
   <div>
     Name: <input formControlName="name" required>
-    <span *ngIf="form.get('name').touched && form.hasError('required', 'name')">
-      required
-    </span>
   </div>
+  <p-selectButton [options]="folders" formControlName="folder"></p-selectButton>
   <div>
     Description: <textarea formControlName="description"></textarea>
   </div>
-  <button type="submit" [disabled]="form.invalid">Reply</button>
+  <button type="submit" [disabled]="form.invalid">Add</button>
 </form>

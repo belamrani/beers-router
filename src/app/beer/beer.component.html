@@ -1,11 +1,14 @@
 <p-dataList [value]="beers | async">
-  <p-header>List of Countries</p-header>
+  <p-header>List of Beers</p-header>
   <p-footer>Choose from the list.</p-footer>
   <ng-template let-b pTemplate="item">
-    <div class="beer-item" *ngIf="b.name !== (beer|async).name" [routerLink]="['../../beers', b.name]">{{b.name}}</div>
-    <div *ngIf="b.name === (beer|async).name">
-      <div>{{b.name}}</div>
-      <div>{{b.description}}</div>
+    <div class="beer-item-inactive" *ngIf="b.name !== (beer|async).name" [routerLink]="['../../beers', b.name]">{{b.name}}</div>
+    <div class="beer-item-active" *ngIf="b.name === (beer|async).name">
+      <img [src]="b.picture">
+      <div class="detail">
+      <div class="name">{{b.name}}</div>
+      <div class="description">{{b.description}}</div>
+      </div>
     </div>
   </ng-template>
 </p-dataList>

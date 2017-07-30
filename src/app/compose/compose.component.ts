@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {ActivatedRoute, Router} from '@angular/router';
 import {Actions} from '../models';
+import {SelectItem} from 'primeng/components/common/api';
 
 @Component({
   selector: 'app-compose',
@@ -10,10 +11,19 @@ import {Actions} from '../models';
 })
 export class ComposeComponent {
 
-  form =
-    new FormGroup({name: new FormControl('', Validators.required), description: new FormControl('')});
+  form = new FormGroup({
+    name: new FormControl('', Validators.required),
+    description: new FormControl(''),
+    folder: new FormControl('')
+  });
 
-  constructor(private route: ActivatedRoute, private router: Router, private actions: Actions) {}
+  folders: SelectItem[];
+
+  constructor(private route: ActivatedRoute, private router: Router, private actions: Actions) {
+    this.folders = [];
+    this.folders.push({label: 'Drank', value: 'drank'});
+    this.folders.push({label: 'To Try', value: 'to-try'});
+  }
 
   onSubmit() {
     const conversationRoute = this.route.snapshot.root.firstChild.firstChild;
@@ -27,6 +37,8 @@ export class ComposeComponent {
     });
   }
 
-  private hidePopup() { this.router.navigate(['/', {outlets: {popup: null}}]); }
+  private hidePopup() {
+    this.router.navigate(['/', {outlets: {popup: null}}]);
+  }
 
 }

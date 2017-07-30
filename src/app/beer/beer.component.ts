@@ -17,6 +17,9 @@ export class BeerComponent {
 
   constructor(route: ActivatedRoute) {
     this.beers = (<any>route.data.pluck('beers')).mergeAll();
+    this.beers.subscribe((t) => {
+      console.log(t);
+    });
     this.beer = route.data.pluck('beer');
   }
 
