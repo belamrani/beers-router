@@ -5,9 +5,11 @@ import {BeerCategoryComponent} from './beer-category/beer-category.component';
 import {BeersComponent} from './beers/beers.component';
 import {BeerComponent} from './beer/beer.component';
 import {ComposeComponent} from './compose/compose.component';
-import {MajorGuardService} from './major-guard.service';
+import {BeerGuardService} from './beer-guard.service';
 import {DataService} from './data.service';
 import {PicturesGuardService} from './pictures-guard.service';
+import {ComposeDeactivateGuardService} from './compose-deactivate-guard.service';
+import {BeerResolverService} from './beer-resolver.service';
 
 const routes = [
   {
@@ -40,8 +42,8 @@ const routes = [
           {
             path: 'beers/:name',
             component: BeerComponent,
-            canActivate: [MajorGuardService],
-            resolve: {beers: 'beersResolver', beer: 'beerResolver'}
+            canActivate: [BeerGuardService],
+            resolve: {beers: 'beersResolver', beer: BeerResolverService}
           }
         ]
       }
@@ -49,13 +51,14 @@ const routes = [
   },
   {
     path: 'compose',
+    canDeactivate: [ComposeDeactivateGuardService],
     component: ComposeComponent,
     outlet: 'newbeer'
   }
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, {enableTracing: true})],
   exports: [RouterModule]
 })
 export class AppRoutingModule {
@@ -74,6 +77,6 @@ export function beersResolver(dataService: DataService) {
   return (route: ActivatedRouteSnapshot) => dataService.getBeers(+route.parent.params['id'], route.parent.params['list']);
 }
 
-export function beerResolver(dataService: DataService) {
-  return (route: ActivatedRouteSnapshot) => dataService.getBeer(route.params['name']);
-}
+// export function beerResolver(dataService: DataService) {
+//   return (route: ActivatedRouteSnapshot) => dataService.getBeer(route.params['name']);
+// }

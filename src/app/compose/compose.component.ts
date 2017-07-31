@@ -17,6 +17,8 @@ export class ComposeComponent {
     list: new FormControl('')
   });
 
+  cancel = false;
+
   lists: SelectItem[];
 
   constructor(private route: ActivatedRoute, private router: Router, private actions: Actions) {
@@ -38,7 +40,7 @@ export class ComposeComponent {
   }
 
   private hidePopup() {
-    console.log('toto');
+    event.stopPropagation();
     this.router.navigate(['/', {outlets: {newbeer: null}}]);
   }
 

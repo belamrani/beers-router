@@ -5,7 +5,7 @@ import {Observer} from 'rxjs/Observer';
 import {ConfirmationService} from 'primeng/components/common/api';
 
 @Injectable()
-export class MajorGuardService implements CanActivate {
+export class BeerGuardService implements CanActivate {
 
   constructor(public confirmationService: ConfirmationService) {
   }

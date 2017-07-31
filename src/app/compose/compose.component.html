@@ -7,4 +7,7 @@
     Description: <textarea formControlName="description"></textarea>
   </div>
   <button type="submit" [disabled]="form.invalid">Add</button>
+  <button type="button" (click)="cancel = true; hidePopup()">Cancel</button>
 </form>
+
+

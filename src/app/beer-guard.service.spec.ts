@@ -1,6 +1,6 @@
 import { TestBed, inject } from '@angular/core/testing';
 
-import { MajorGuardService } from './major-guard.service';
+import { MajorGuardService } from './beer-guard.service';
 
 describe('MajorGuardService', () => {
   beforeEach(() => {
