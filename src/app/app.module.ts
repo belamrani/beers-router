@@ -1,15 +1,12 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
-import {
-  AppRoutingModule, beersResolver, categoriesResolver,
-  categoryResolver
-} from './app-routing.module';
-import { AppComponent } from './app.component';
-import { BeerCategoriesComponent } from './beer-categories/beer-categories.component';
-import { BeerCategoryComponent } from './beer-category/beer-category.component';
-import { BeersComponent } from './beers/beers.component';
-import { BeerComponent } from './beer/beer.component';
-import { ComposeComponent } from './compose/compose.component';
+import {BrowserModule} from '@angular/platform-browser';
+import {NgModule} from '@angular/core';
+import {AppRoutingModule} from './app-routing.module';
+import {AppComponent} from './app.component';
+import {BeerCategoriesComponent} from './beer-categories/beer-categories.component';
+import {BeerCategoryComponent} from './beer-category/beer-category.component';
+import {BeersComponent} from './beers/beers.component';
+import {BeerComponent} from './beer/beer.component';
+import {ComposeComponent} from './compose/compose.component';
 import {PicturesGuardService} from './pictures-guard.service';
 import {BeerGuardService} from './beer-guard.service';
 import {ConfirmationService} from 'primeng/components/common/api';
@@ -22,6 +19,11 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {SelectButtonModule} from 'primeng/components/selectbutton/selectbutton';
 import {ComposeDeactivateGuardService} from './compose-deactivate-guard.service';
 import {BeerResolverService} from './beer-resolver.service';
+import {StoreModule} from '@ngrx/store';
+import {reducers} from './store/reducer';
+import {CategoriesResolverService} from './categories-resolver.service';
+import {CategoryResolverService} from './category-resolver.service';
+import {BeersResolverService} from './beers-resolver.service';
 
 @NgModule({
   declarations: [
@@ -37,6 +39,7 @@ import {BeerResolverService} from './beer-resolver.service';
     ReactiveFormsModule,
     FormsModule,
     DataListModule,
+    StoreModule.forRoot(reducers),
     BrowserAnimationsModule,
     AppRoutingModule,
     ConfirmDialogModule,
@@ -44,10 +47,9 @@ import {BeerResolverService} from './beer-resolver.service';
   ],
   providers: [
     BeerGuardService, PicturesGuardService, ComposeDeactivateGuardService,
-    BeerResolverService, ConfirmationService, DataService, Actions,
-    {provide: 'categoriesResolver', useFactory: categoriesResolver, deps: [DataService]},
-    {provide: 'categoryResolver', useFactory: categoryResolver, deps: [DataService]},
-    {provide: 'beersResolver', useFactory: beersResolver, deps: [DataService]}],
+    ConfirmationService, DataService, Actions, BeerResolverService,
+    CategoriesResolverService, CategoryResolverService, BeersResolverService],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}

@@ -1,8 +1,10 @@
 import {Component} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {ActivatedRoute, Router} from '@angular/router';
-import {Actions} from '../models';
+import * as BeerActions from '../store/actions';
 import {SelectItem} from 'primeng/primeng';
+import {State} from '../store/reducer';
+import {Store} from '@ngrx/store';
 
 @Component({
   selector: 'app-compose',
@@ -21,7 +23,8 @@ export class ComposeComponent {
 
   lists: SelectItem[];
 
-  constructor(private route: ActivatedRoute, private router: Router, private actions: Actions) {
+  constructor(private route: ActivatedRoute, private router: Router,
+              private store: Store<State>) {
     this.lists = [];
     this.lists.push({label: 'Drank', value: 'drank'});
     this.lists.push({label: 'To Try', value: 'to-try'});
@@ -31,16 +34,13 @@ export class ComposeComponent {
     const conversationRoute = this.route.snapshot.root.firstChild.firstChild;
     const categoryId = +conversationRoute.params['id'];
 
-    this.actions.next({
-      type: 'add',
+    this.store.dispatch(new BeerActions.AddBeer({
       categoryId: categoryId,
-      payload: this.form.value,
-      onSuccess: () => this.hidePopup()
-    });
-  }
-
-  private hidePopup() {
-    event.stopPropagation();
+      id: 1,
+      list: this.form.value.list,
+      name: this.form.value.name,
+      description:  this.form.value.description
+    }));
     this.router.navigate(['/', {outlets: {newbeer: null}}]);
   }
 

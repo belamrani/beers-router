@@ -7,7 +7,8 @@ import {DataService} from './data.service';
 @Injectable()
 export class BeerResolverService implements Resolve<Beer> {
 
-  constructor(private dataService: DataService) { }
+  constructor(private dataService: DataService) {
+  }
 
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<Beer> {
     return this.dataService.getBeer(route.params['name']);
